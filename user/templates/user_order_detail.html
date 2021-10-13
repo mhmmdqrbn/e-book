@@ -1,0 +1,124 @@
+{% extends "homebase.html" %}
+
+{% block title %} Sifariş Məlumatı {% endblock title %}
+{% block keywords %} {{ setting.keywords }} {% endblock keywords %}
+{% block description %} {{setting.description}} {% endblock description %}
+{% block head %} <link rel="shortcut icon" type='image/x-icon' href="{{setting.icon.url}}"> {% endblock head %}
+
+{% block sidebar %}
+  {% include "sidebar.html" %}
+{% endblock sidebar %}
+
+{% block content %}
+
+<!-- BREADCRUMB -->
+<div id="breadcrumb">
+    <div class="container">
+        <ul class="breadcrumb">
+            <li><a href="/">Ana Səhifə</a></li>
+            <li class="active">Profil</li>
+        </ul>
+    </div>
+</div>
+<!-- /BREADCRUMB -->
+
+<!-- section -->
+<div class="section">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+            <div class="col-md-3"> 
+                {% include "user_panel.html" %}
+            </div>
+            <div class="col-md-9">
+                <div class="section-title">
+                    <h4 class="title">Sifaris Melumatlari</h4>
+                </div>
+                <table class="shopping-cart-table table">
+                        <tr>
+                        <th class="text-left">Ad</th>
+                        <td class="text-left">{{ order.first_name}}</td>
+                        </tr>
+                        {% if order.adminnote is None %}
+                    <tr>
+                        <th class="text-left">Email</th>
+                        <td class="text-left">{{ order.email }}</td>
+                    </tr>
+                        {% endif %}
+                    <tr>
+                        <th class="text-left">Nomre</th>
+                        <td class="text-left">{{ order.phone }}</td>
+                    </tr>
+                    <tr>
+                        <th class="text-left">Address</th>
+                        <td class="text-left">{{ order.address }}</td>
+                    </tr>
+                    <tr>
+                        <th class="text-left">Seher</th>
+                        <td class="text-left">{{ order.city }}</td>
+                    </tr>
+                    <tr>
+                        <th class="text-left">Olke</th>
+                        <td class="text-left">{{ order.country }}</td>
+                    </tr>
+                    <tr>
+                        <th class="text-left">Tarix</th>
+                        <td class="text-left">{{ order.create_at }}</td>
+                    </tr>
+                    {% if order.adminnote is None %}
+                    <tr>
+                        <th class="text-left">Admin notu</th>
+                        <td class="text-left">{{ order.adminnote }}</td>
+                    </tr>
+                    {% endif %}
+          
+
+            </table>
+                <div class="section-title">
+                    <h4 class="title">
+                        Mənim Sifarişlərim
+                    </h4>
+                </div>
+                
+                <table class="shopping-cart-table table">
+                <tr>
+                    <th class="text-left">Müəllif</th>
+                    <th class="text-left">Kitab </th>
+                    <th class="text-left">Qiymet</th>
+                    <th class="text-left">Sayi</th>
+                    <th class="text-left">Cəmi</th>
+                    <th class="text-left">Status</th>
+                    <th class="text-left">Tarix</th>
+                </tr>
+
+                    {% for data in orderItems %}
+                      
+                    
+                    <tr>
+                        <td class="text-left"><a href="/product/{{data.product_id}}/{{data.product.slug}}">{{ data.product.author}}</a></td>
+                        <td class="text-left">{{ data.product.title}}</td>
+                        <td class="text-left">{{ data.price}}</td>
+                        <td class="text-left">{{ data.quantity}}</td>
+                        <td class="text-left">{{ data.amount}}</td>
+                        <td class="text-left">{{ data.status}}</td>
+                        <td class="text-left">{{ data.create_at}}</td>
+                    </tr>
+                    {% endfor %}
+                
+                </table>
+            </div>
+
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+</div>
+<!-- /section -->
+  
+{% endblock content %}
+
+
+
+
+

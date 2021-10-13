@@ -1,0 +1,39 @@
+{% extends "homebase.html" %}
+
+{% block title %} About - {{ setting.company }}{% endblock title %}
+{% block keywords %} {{ setting.keywords }} {% endblock keywords %}
+{% block description %} {{setting.description}} {% endblock description %}
+{% block head %} <link rel="shortcut icon" type='image/x-icon' href="{{setting.icon.url}}"> {% endblock head %}
+
+{% block sidebar %}
+  {% include "sidebar.html" %}
+{% endblock sidebar %}
+
+{% block content %}
+
+<!-- BREADCRUMB -->
+<div id="breadcrumb">
+    <div class="container">
+        <ul class="breadcrumb">
+            <li><a href="/">Ana Səhifə</a></li>
+            <li class="active">Haqqımızda</li>
+        </ul>
+    </div>
+</div>
+<!-- /BREADCRUMB -->
+
+<!-- section -->
+<div class="section">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+            {{ setting.aboutus |safe }}
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+</div>
+<!-- /section -->
+  
+{% endblock content %}

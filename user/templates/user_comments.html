@@ -1,0 +1,86 @@
+{% extends "homebase.html" %}
+
+{% block title %} Sifariş Rəyləri {% endblock title %}
+{% block keywords %} {{ setting.keywords }} {% endblock keywords %}
+{% block description %} {{setting.description}} {% endblock description %}
+{% block head %} <link rel="shortcut icon" type='image/x-icon' href="{{setting.icon.url}}"> {% endblock head %}
+
+{% block sidebar %}
+  {% include "sidebar.html" %}
+{% endblock sidebar %}
+
+{% block content %}
+
+<!-- BREADCRUMB -->
+<div id="breadcrumb">
+    <div class="container">
+        <ul class="breadcrumb">
+            <li><a href="/">Ana Səhifə</a></li>
+            <li class="active">Mənim Rəylərim</li>
+        </ul>
+    </div>
+</div>
+<!-- /BREADCRUMB -->
+
+<!-- section -->
+<div class="section">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+            <div class="col-md-3"> 
+                {% include "user_panel.html" %}
+            </div>
+            <div class="col-md-9">
+                <div class="section-title">
+                    <h3 class="title">
+                        Mənim Rəylərim
+                    </h3>
+                </div>
+                
+                <table class="shopping-cart-table table">
+                <tr>
+                    <th class="text-left">Kitab</th>
+                    <th class="text-left">Müəllif</th>
+                    <th class="text-left">Başlıq</th>
+                    <th class="text-left">Rəy</th>
+                    <th class="text-left">Tarix</th>
+
+
+                </tr>
+
+                    {% for data in comments %}
+                      
+                    
+                    <tr>
+                        <td class="text-left">
+                            <a href="/product/{{data.product_id}}/{{data.product.slug}}/">
+                            <strong>{{ data.product.title}}</strong> 
+                            </a>
+                        </td>
+                        <td class="text-left">{{data.product.author}}</td>
+                        <td class="text-left">{{ data.subject}}</td>
+                        <td class="text-left">{{ data.comment}}</td>
+                        <td class="text-left">{{ data.create_at}}</td>
+                        <td class="text-left"><a class="primary-btn" href="/user/deletecomment/{{data.id}}">Sil</a></td>
+
+
+                    </tr>
+                    {% endfor %}
+                
+                </table>
+            </div>
+
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+</div>
+<!-- /section -->
+  
+{% endblock content %}
+
+
+
+
+

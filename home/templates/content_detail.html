@@ -1,0 +1,45 @@
+{% extends "homebase.html" %}
+
+{% block title %} {{content.title}}{% endblock title %}
+{% block keywords %} {{ setting.keywords }} {% endblock keywords %}
+{% block description %} {{setting.description}} {% endblock description %}
+{% block head %} <link rel="shortcut icon" type='image/x-icon' href="{{setting.icon.url}}"> {% endblock head %}
+
+{% block sidebar %}
+  {% include "sidebar.html" %}
+{% endblock sidebar %}
+
+{% block content %}
+
+<!-- BREADCRUMB -->
+<div id="breadcrumb">
+    <div class="container">
+        <ul class="breadcrumb">
+            <li><a href="/">Ana Səhifə</a></li>
+            <li class="active">Elan</li>
+        </ul>
+    </div>
+</div>
+<!-- /BREADCRUMB -->
+
+<!-- section -->
+<div class="section">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+            <img src="{{content.image.url}}" align='left' height="300"  alt="">
+            {{content.detail | safe}}
+            <hr>
+
+            {% for data in images %}
+              <img src="{{data.image.url}}" height="200px" alt=""> <br>
+            {% endfor %}
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+</div>
+<!-- /section -->
+  
+{% endblock content %}

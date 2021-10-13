@@ -1,0 +1,32 @@
+{% load static %}
+
+
+<div id="home">
+    <!-- container -->
+    <div class="container">
+        <!-- home wrap -->
+        <div class="home-wrap">
+            <!-- home slick -->
+            <div id="home-slick">
+                <!-- banner -->
+                {% for data in products  %}
+                {% if data.id == 48 %}
+                  
+                
+                <a href="/product/48/daha-sonra" class="banner banner-1">
+                    <img src="{{data.image.url}}" style="height: 400px;" alt=""> 
+                   <!-- <div class="banner-caption text-center">
+                        <h2>{{ data.title }}</h1>
+                        <a href="/content/{{data.id}}/{{data.slug}}" class="primary-btn">Elana get</a>
+                    </div> -->
+                </a>
+                {% endif %}
+                {% endfor %}
+                <!-- /banner -->
+            </div>
+            <!-- /home slick -->
+        </div>
+        <!-- /home wrap -->
+    </div>
+    <!-- /container -->
+</div>

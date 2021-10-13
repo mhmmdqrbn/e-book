@@ -1,0 +1,69 @@
+{% extends "homebase.html" %}
+
+{% block title %} Contact - {{ setting.company }}{% endblock title %}
+{% block keywords %} {{ setting.keywords }} {% endblock keywords %}
+{% block description %} {{setting.description}} {% endblock description %}
+{% block head %} <link rel="shortcut icon" type='image/x-icon' href="{{setting.icon.url}}"> {% endblock head %}
+
+{% block sidebar %}
+  {% include "sidebar.html" %}
+{% endblock sidebar %}
+
+{% block content %}
+
+<!-- BREADCRUMB -->
+<div id="breadcrumb">
+    <div class="container">
+        <ul class="breadcrumb">
+            <li><a href="/">Ana Səhifə</a></li>
+            <li class="active">Əlaqə</li>
+        </ul>
+    </div>
+</div>
+<!-- /BREADCRUMB -->
+
+<!-- section -->
+<div class="section">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+            <div class="col-md-4">
+                <div class="billing-details">
+                    <div class="section-title">
+                        <h3 class="title">Əlaqə Formu</h3>
+                    </div>
+
+                    {% if messages %}
+                        {% for message in messages %}
+                          <div class="alert alert-{{message.tags}}" role="alert">
+                              {{ message }}
+                          </div>
+                        {% endfor %}
+
+                    {% endif %}
+
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <button class="btn btn-danger">Göndər</button>
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="section-title">
+                    <h3 class="title">
+                        Əlaqə
+                    </h3>
+                </div>
+                {{ setting.contact | safe }}
+            </div>
+
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+</div>
+<!-- /section -->
+  
+{% endblock content %}

@@ -1,0 +1,95 @@
+{% load static %}
+
+<footer id="footer" class="section section-grey">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+            <!-- footer widget -->
+            <div class="col-md-3 col-sm-6 col-xs-6">
+                <div class="footer">
+                    <!-- footer logo -->
+                    <div  class="footer-logo">
+                        <a class="logo" href="/">
+                <img  src="{%static './img/logobook.png' %} " alt="">
+              </a>
+                    </div>
+                    <!-- /footer logo -->
+
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna</p>
+
+                    <!-- footer social -->
+                    <ul class="footer-social">
+                        <li><a href="facebook.com"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                        <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                        <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+                    </ul>
+                    <!-- /footer social -->
+                </div>
+            </div>
+            <!-- /footer widget -->
+
+            <!-- footer widget -->
+            <div class="col-md-3 col-sm-6 col-xs-6">
+                <div class="footer">
+                    <h3 class="footer-header">Hesab</h3>
+                    <ul class="list-links">
+                        <li><a href="/user/profile">Mənim profilim</a></li>
+                        <li><a href="/user/favorites">İstək Listim</a></li>
+                        <li><a href="/user/orders">Sifarişlərim</a></li>
+                        <li><a href="/user/product_create">Məhsullarım</a></li>
+                        {% if request.user.is_authenticated %}
+                          <li><a href="/logout">Çıxış</a></li>
+                          {% else %}
+                          <li><a href="/login">Login</a></li>
+                        {% endif %}
+                        
+                    </ul>
+                </div>
+            </div>
+            <!-- /footer widget -->
+
+            <div class="clearfix visible-sm visible-xs"></div>
+
+            <!-- footer widget -->
+            <div class="col-md-3 col-sm-6 col-xs-6">
+                <div class="footer">
+                    <h3 class="footer-header">Məlumat</h3>
+                    <ul class="list-links">
+                        <li><a href="/aboutus">Haqqımızda</a></li>
+                        <li><a href="/shop">Mağaza</a></li>
+                        <li><a href="/contact">Əlaqə</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- /footer widget -->
+
+            <!-- footer subscribe -->
+            <div class="col-md-3 col-sm-6 col-xs-6">
+                <div class="footer">
+                    <h3 class="footer-header">Bağlı Qal</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.</p>
+                    <form>
+                        <div class="form-group">
+                            <input class="input" placeholder="Email adress daxil edin...">
+                        </div>
+                        <button class="primary-btn">Xəbər al</button>
+                    </form>
+                </div>
+            </div>
+            <!-- /footer subscribe -->
+        </div>
+        <!-- /row -->
+        
+    </div>
+    <!-- /container -->
+</footer>
+<!-- /FOOTER -->
+
+	<script src="{% static 'js/bootstrap.min.js'%}"></script>
+	<script src="{% static 'js/slick.min.js'%}"></script>
+	<script src="{% static 'js/nouislider.min.js'%}"></script>
+	<script src="{% static 'js/jquery.zoom.min.js'%}"></script>
+	<script src="{% static 'js/main.js'%}"></script>

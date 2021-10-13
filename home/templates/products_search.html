@@ -1,0 +1,57 @@
+{% extends "homebase.html" %}
+
+{% block title %} Axtarış Bölməsi{% endblock title %}
+{% block keywords %} {{ setting.keywords }} {% endblock keywords %}
+{% block description %} {{setting.description}} {% endblock description %}
+{% block head %} <link rel="shortcut icon" type='image/x-icon' href="{{setting.icon.url}}"> {% endblock head %}
+
+{% block sidebar %}
+  {% include "sidebar.html" %}
+{% endblock sidebar %}
+
+{% block content %}
+
+<!-- BREADCRUMB -->
+<div id="breadcrumb">
+    <div class="container">
+        <ul class="breadcrumb">
+            <li><a href="/">Ana Səhifə</a></li>
+            <li class="active">Axtarış</li>
+        </ul>
+    </div>
+</div>
+<!-- /BREADCRUMB -->
+
+<!-- section -->
+<div class="section">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+            <table cellpadding='3' style="margin-left: 20px;" width='1000' >
+                <tr>
+                    <th>Yazar</th>
+                    <th>Kitab</th>
+                    <th>Kategoriya</th>
+                    <th>Qiymət</th>
+                </tr>
+                {% for data in products %}
+                  
+                
+                <tr >
+                    <td><a href="/product/{{data.id}}/{{data.slug}}"><h4>{{ data.author}}</h4></a></td>
+                    <td> <h4 class="product-name"><a href="/product/{{data.id}}/{{data.slug}}">{{data.title}}</a></h4></td>
+                    <td><a href="/category/{{data.category.id}}/{{data.category.slug}}">{{data.category}}</a></td>
+                    <td><h4>{{data.price}}</h4></td>
+                </tr>
+                {% endfor %}
+                <br>
+            </table>
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+</div>
+<!-- /section -->
+  
+{% endblock content %}

@@ -1,0 +1,56 @@
+{% extends "homebase.html" %}
+
+{% block title %} Sıx verilən suallar{% endblock title %}
+{% block keywords %} {% endblock keywords %}
+{% block description %}  {% endblock description %}
+{% block head %} <link rel="shortcut icon" type='image/x-icon' href="{{setting.icon.url}}">
+<script>
+    $( function() {
+      $( "#accordion" ).accordion();
+    } );
+    </script>
+{% endblock head %}
+
+{% block sidebar %}
+  {% include "sidebar.html" %}
+{% endblock sidebar %}
+
+{% block content %}
+
+<!-- BREADCRUMB -->
+<div id="breadcrumb">
+    <div class="container">
+        <ul class="breadcrumb">
+            <li><a href="/">Ana Səhifə</a></li>
+            <li class="active">FAQ</li>
+        </ul>
+    </div>
+</div>
+<!-- /BREADCRUMB -->
+
+<!-- section -->
+<div class="section">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+            <h3 align='center'>Sıx verilən suallar</h3>
+            <br>
+            <div id="accordion">
+                {% for data in faq %}
+                <h3>{{data.question}}</h3>
+                <div>
+                  <p>
+                      {{data.answer}}
+                    </p>
+                </div>
+                {% endfor%}
+            </div>
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+</div>
+<!-- /section -->
+  
+{% endblock content %}

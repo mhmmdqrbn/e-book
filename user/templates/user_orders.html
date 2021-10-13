@@ -1,0 +1,82 @@
+{% extends "homebase.html" %}
+
+{% block title %} Sifarişlərim {% endblock title %}
+{% block keywords %} {{ setting.keywords }} {% endblock keywords %}
+{% block description %} {{setting.description}} {% endblock description %}
+{% block head %} <link rel="shortcut icon" type='image/x-icon' href="{{setting.icon.url}}"> {% endblock head %}
+
+{% block sidebar %}
+  {% include "sidebar.html" %}
+{% endblock sidebar %}
+
+{% block content %}
+
+<!-- BREADCRUMB -->
+<div id="breadcrumb">
+    <div class="container">
+        <ul class="breadcrumb">
+            <li><a href="/">Ana Səhifə</a></li>
+            <li class="active">Profil</li>
+        </ul>
+    </div>
+</div>
+<!-- /BREADCRUMB -->
+
+<!-- section -->
+<div class="section">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+            <div class="col-md-3"> 
+                {% include "user_panel.html" %}
+            </div>
+            <div class="col-md-9">
+                <div class="section-title">
+                    <h3 class="title">
+                        Mənim Sifarişlərim
+                    </h3>
+                </div>
+                
+                <table class="shopping-cart-table table">
+                <tr>
+                    <th class="text-left">Sifariş kodu</th>
+                    <th class="text-left">Sifarişçi</th>
+                    <th class="text-left">Cəmi</th>
+                    <th class="text-left">Status</th>
+                    <th class="text-left">Tarix</th>
+                    <th class="text-left">Məlumat</th>
+
+                </tr>
+
+                    {% for data in orders %}
+                      
+                    
+                    <tr>
+                        <td class="text-left">{{ data.code}}</td>
+                        <td class="text-left">{{ data.first_name}}</td>
+                        <td class="text-left">{{ data.total}}</td>
+                        <td class="text-left">{{ data.status}}</td>
+                        <td class="text-left">{{ data.create_at}}</td>
+                        <td class="text-left"><a class="primary-btn" href="/user/orderdetail/{{data.id}}">Klik</a></td>
+
+
+                    </tr>
+                    {% endfor %}
+                
+                </table>
+            </div>
+
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+</div>
+<!-- /section -->
+  
+{% endblock content %}
+
+
+
+
+

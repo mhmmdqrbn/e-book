@@ -1,0 +1,105 @@
+{% extends "homebase.html" %}
+{% load static %}
+{% block title %} Mağaza {% endblock title %}
+{% block keywords %} {% endblock keywords %}
+{% block description %} {% endblock description %}
+{% block head %} <link rel="shortcut icon" type='image/x-icon' href="{{setting.icon.url}}">
+
+<style>
+    hr.new1 {
+        border-top: 3px solid #F8694A;
+        width: 90px;
+      }
+</style>
+
+{% endblock head %}
+
+{% block sidebar %}
+  {% include "sidebar.html" %}
+{% endblock sidebar %}
+
+{% block content %}
+
+<div id="breadcrumb">
+    <div class="container">
+        <ul class="breadcrumb">
+            <li><a href="/">Ana Səhifə</a></li>
+            <li class="active">Mağaza</li>
+        </ul>
+    </div>
+</div>
+<!-- section -->
+<div class="section">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+            <div>
+                <h3 align='center'>Mağaza</h3>
+            </div>
+            <hr class="new1">			
+					<div  id="store">
+						<!-- row -->
+						<div class="row">
+
+                            
+                            
+							<!-- Product Single -->
+                            {% for data in page_obj  %}
+
+                            
+							<div class="col-md-4 col-sm-6 col-xs-6">
+								<div class="product product-single">
+									<div class="product-thumb">
+										<a href="/product/{{data.id}}/{{data.slug}}" class="main-btn quick-view"><i class="fa fa-search-plus"></i>Keçid et </a>
+										<img style="height: 250px;" src="{{data.image.url}}" alt="">
+									</div>
+									<div class="product-body">
+										<h3 class="product-price">{{data.price}} AZN<del class="product-old-price"></del></h3>
+										<div class="product-rating">
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star-o empty"></i>
+										</div>
+										<h2 class="product-name"><a href="/product/{{data.id}}/{{data.slug}}">{{data.title}}</a></h2>
+                                        <p>{{data.author}} </p>
+										<div class="product-btns">
+											<a href="/user/favorites/{{data.id}}" class="main-btn icon-btn"><i class="fa fa-heart"></i></a>
+											<a href="/order/addtocart/{{data.id}}" class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> Səbətə</a>
+										</div>
+									</div>
+								</div>
+							</div>
+                            {% endfor %}
+
+							<!-- /Product Single -->
+						</div>
+						<!-- /row -->
+					</div>
+					<div style="display:flex;justify-content: center;align-items:center;" class="pagination">
+						<span class="step-links">
+							{% if page_obj.has_previous %}
+								<a class="btn btn-danger" href="?page={{ page_obj.previous_page_number }}">əvvəlki səhifə</a>
+							{% endif %}
+					
+							<!-- <span class="current">
+								Səhifə {{ page_obj.number }}
+							</span> -->
+					
+							{% if page_obj.has_next %}
+								<a class="btn btn-danger" href="?page={{ page_obj.next_page_number }}">növbəti səhifə</a>
+							{% endif %}
+						</span>
+					</div>
+					<!-- /STORE -->
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+</div>
+<!-- /section -->
+  
+{% endblock content %}
+

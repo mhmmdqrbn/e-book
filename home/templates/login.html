@@ -1,0 +1,56 @@
+{% extends "homebase.html" %}
+
+{% block title %} Daxil ol {% endblock title %}
+{% block keywords %} {{ setting.keywords }} {% endblock keywords %}
+{% block description %} {{setting.description}} {% endblock description %}
+{% block head %} <link rel="shortcut icon" type='image/x-icon' href="{{setting.icon.url}}"> {% endblock head %}
+
+{% block sidebar %}
+  {% include "sidebar.html" %}
+{% endblock sidebar %}
+
+{% block content %}
+
+<!-- BREADCRUMB -->
+<div id="breadcrumb">
+    <div class="container">
+        <ul class="breadcrumb">
+            <li><a href="/">Ana Səhifə</a></li>
+            <li class="active">Daxil Ol</li>
+        </ul>
+    </div>
+</div>
+<!-- /BREADCRUMB -->
+
+<!-- section -->
+<div class="section">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="billing-details">
+                    <div class="section-title">
+                        <h3 class="title">Daxil Ol</h3>
+                    </div>
+
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <input name="username" placeholder="Istifadəçi adı" type="text" class="input">
+                        </div>
+                        <div class="form-group">
+                            <input name="password" placeholder="Parol" type="password" class="input">
+                        </div>
+                        <input style="content: ('daxil ol');" type="submit"  class="btn btn-danger" values="Login">
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+</div>
+<!-- /section -->
+  
+{% endblock content %}

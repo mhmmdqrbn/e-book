@@ -1,0 +1,94 @@
+{% extends "homebase.html" %}
+
+{% block title %} Səbət Bölməsi{% endblock title %}
+{% block keywords %} {{ setting.keywords }} {% endblock keywords %}
+{% block description %} {{setting.description}} {% endblock description %}
+{% block head %} <link rel="shortcut icon" type='image/x-icon' href="{{setting.icon.url}}"> {% endblock head %}
+
+{% block sidebar %}
+  {% include "sidebar.html" %}
+{% endblock sidebar %}
+
+{% block content %}
+
+<!-- BREADCRUMB -->
+<div id="breadcrumb">
+    <div class="container">
+        <ul class="breadcrumb">
+            <li><a href="/">Ana Səhifə</a></li>
+            <li class="active">Səbət</li>
+        </ul>
+    </div>
+</div>
+<!-- /BREADCRUMB -->
+
+<!-- section -->
+<div class="section">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="order-summary clearfix">
+                    <div class="section-title">
+                        <h3 class="title">Səbət</h3>
+                    </div>
+                    <table class="shopping-cart-table table">
+                        <thead>
+                            <tr>
+                                <th>Kitab</th>
+                                <th></th>
+                                <th class="text-center">Qiymət</th>
+                                <th class="text-center">Ədəd</th>
+                                <th class="text-center">Cəm</th>
+                                <th class="text-right"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for data in schopcart %}
+                              
+                            
+                            <tr>
+                                <td class="thumb"><img src="{{ data.product.image.url}}" alt=""></td>
+                                <td class="details">
+                                    <a href="#">{{data.product}}</a>
+                                    <ul>
+                                        <li><span>{{data.product.author}}</span></li>
+                                    </ul>
+                                </td>
+                                <td class="price text-center"><strong>{{data.product.price}}</strong><br><del class="font-weak"><small></small></del></td>
+                                <td class="qty text-center"><strong>{{data.quantity}}</strong></td>
+                                <td class="total text-center"><strong class="primary-color">{{data.amount}}</strong></td>
+                                <td class="text-right"><a href="/order/deletefromcart/{{data.id}}" onclick="return confirm('Əminsən?')"  class="main-btn icon-btn" style="background-color: #F8694A;"><i class="fa fa-close" ></i></a></td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                        <tfoot>
+                            
+                            <tr>
+                                <th class="empty" colspan="3"></th>
+                                <th>Cəmi</th>
+                                <th colspan="2" class="total">{{total}}</th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                    {% if total > 0  %}
+                    <div class="pull-right">
+                        <a href="/order/orderproduct" class="primary-btn">Al</a>
+                    </div>
+                    {% else %}
+                    <div class="pull-right">
+                        <a href="/" class="primary-btn">Səbət boşdur!</a>
+                    </div>
+                    {% endif %}
+                    
+                </div>
+
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+</div>
+<!-- /section -->
+  
+{% endblock content %}

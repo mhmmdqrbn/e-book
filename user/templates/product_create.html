@@ -1,0 +1,166 @@
+{% extends "homebase.html" %}
+
+{% block title %} Kitab sat{% endblock title %}
+{% block keywords %} {{ setting.keywords }} {% endblock keywords %}
+{% block description %} {{setting.description}} {% endblock description %}
+{% block head %} <link rel="shortcut icon" type='image/x-icon' href="{{setting.icon.url}}"> {% endblock head %}
+
+{% block sidebar %}
+  {% include "sidebar.html" %}
+{% endblock sidebar %}
+
+{% block content %}
+
+<!-- BREADCRUMB -->
+<div id="breadcrumb">
+    <div class="container">
+        <ul class="breadcrumb">
+            <li><a href="/">Ana Səhifə</a></li>
+            <li class="active">Kitab sat</li>
+        </ul>
+    </div>
+</div>
+<!-- /BREADCRUMB -->
+
+<!-- section -->
+<div class="section">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        
+        <form id='myform' method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="row">
+            
+            <div class="col-lg-6">
+                <label>Yazici adi</label>
+                <input class='form-control' name='author' placeholder="author" id='author'>
+            </div>
+            <div class="col-lg-6">
+                <label>Kitab adi</label>
+                <input class='form-control' name='title' placeholder="title" id="title">
+            </div>
+            
+
+        </div>
+        <br>
+        <!-- /row -->
+        <div class="row">
+            <div class="col-lg-6">
+                <label>Kategoriya</label>
+                <select name="category_name" id="category_name" class="form-control">
+                        {% load mptt_tags %}
+                        
+                            {% recursetree category %}
+                            <li class="dropdown side-dropdown">
+                                <option value="{{node.id}}" class="dropdown-toggle"{% if not node.is_leaf_node %} data-toggle="dropdown" aria-expanded="true" {% endif %}>{{ node.title }} {% if not node.is_leaf_node %} <i class="fa fa-angle-right"></i> {% endif %}</option>
+                                <div class="custom-menu">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                    
+                                            {% if not node.is_leaf_node %}
+                                            <ul class="list-links">
+                                                <li><a href="#">{{ children }}</a></li>
+                                            
+                                            </ul>
+                                            {% endif %}
+                                            <hr class="hidden-md hidden-lg">
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            {% endrecursetree %}
+                </select>
+            </div>
+            <div class="col-lg-6">
+                <label>Slug</label>
+                <input class='form-control' name='slug' placeholder="slug" id="slug">
+            </div>
+
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-lg-6">
+                <label>Qiymet</label>
+                <input type="number" min=1  pattern="\d+" class='form-control' name='price' placeholder="qiymet" id='price'>
+            </div>
+
+            <div class="col-lg-6">
+                <label>Kitab sayi</label>
+                <input type="number" min=1 class='form-control' name='amount' placeholder="say" id="amount">
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-lg-12">
+                <label>Məhsul haqqında qısa məlumat</label>
+                <textarea name="description" rows="5" class="form-control" required></textarea>
+            </div>
+        </div>
+        <br>
+        <br>
+        <div class="row">
+            <div class="col-lg-12">
+                <label > Məhsul haqqında geniş məlumat</label>
+                <textarea name="detail"  cols="5" rows="5" class="form-control"></textarea>
+            </div>
+        </div>
+        <br>
+        <hr>
+        <div class="media_div">
+            <div class="row media_div_row first_media">
+                <div class="col-lg-6">
+                    <label>Şəkil</label>
+                    <input type="file" accept="image/*" name='image'  class="form-control">
+                </div>
+                <div class="col-lg-6">
+                    <img style="width: 70%; display:none;" class="img_preview">
+                </div>
+                <!-- <div class="col-lg-6">
+                    <select name="status" >
+                        <option >Beli</option>
+                        <option >Xeyr</option>
+                    </select>
+                </div> -->
+            </div>
+        </div>
+        <br>
+        <!-- <div class="row">
+            <div class="col-lg-6">
+                <button class="btn btn-success btn-block add_media" type="button">Elave et</button>
+            </div>
+            <div class="col-lg-6">
+                <button class="btn btn-danger btn-block remove_media" type="button">Sil</button>
+            </div>
+        
+        </div> -->
+        <br>
+        <br>
+        <div class="col-lg-12">
+            <button type="submit" class="btn btn-primary btn-block submit_btn ">Əlavə et</button>
+        </div>
+        </form>
+       
+    </div>
+    <!-- /container -->
+</div>
+<!-- /section -->
+<script>
+    document.getElementById("title").onkeyup=function(){
+      document.getElementById("slug").value = document.getElementById("title").value
+    }
+  </script>
+  <script>
+      $(".add_media").click(function(){
+          var media_row=$(".first_media").clone();
+          media_row.removeClass("first_media");
+          media_row.replaceAll("src","");
+          $(".media_div").append(media_row)
+      })
+      $(".remove_media").click(function(){
+          if($(".media_div").find(".media_div_row").length>1){
+              $(".media_div").children().last().remove();
+          }
+      })
+  </script>
+{% endblock content %}

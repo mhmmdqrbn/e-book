@@ -1,0 +1,91 @@
+{% extends "homebase.html" %}
+
+{% block title %} {{profile.user.first_name}} {% endblock title %}
+{% block keywords %} {{ setting.keywords }} {% endblock keywords %}
+{% block description %} {{setting.description}} {% endblock description %}
+{% block head %} <link rel="shortcut icon" type='image/x-icon' href="{{setting.icon.url}}"> {% endblock head %}
+
+{% block sidebar %}
+  {% include "sidebar.html" %}
+{% endblock sidebar %}
+
+{% block content %}
+
+<!-- BREADCRUMB -->
+<div id="breadcrumb">
+    <div class="container">
+        <ul class="breadcrumb">
+            <li><a href="/">Ana Səhifə</a></li>
+            <li class="active">Profil</li>
+        </ul>
+    </div>
+</div>
+<!-- /BREADCRUMB -->
+
+<!-- section -->
+<div class="section">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+            <div class="col-md-3"> 
+                {% include "user_panel.html" %}
+            </div>
+            <div class="col-md-9">
+                <div class="section-title">
+                    <h3 class="title">
+                        Şəxsi Məlumatlar
+                    </h3>
+                </div>
+                
+                <table class="shopping-cart-table table">
+
+
+                        <tr>
+                            <th class="text-left">
+                                <a href="/user/update" class="primary-btn"> Məlumatları Yenilə </a>
+                                <a href="/user/password" class="primary-btn"> Parolu Dəyiş</a>
+    
+                            </th>
+                            <th class="text-center"></th>
+                            <td ><img src="{{ profile.image.url }}" alt="" style="height: 250px;width:150px;"></td>
+                            </tr>
+                            <tr>
+                            <th class="text-left">Ad</th>
+                            <td class="text-left">{{ profile.user.first_name}}</td>
+                        </tr>
+                        <tr>
+                            <th class="text-left">Email</th>
+                            <td class="text-left">{{  profile.user.email }}</td>
+                        </tr>
+                        <tr>
+                            <th class="text-left">Nomre</th>
+                            <td class="text-left">{{ profile.phone }}</td>
+                        </tr>
+                        <tr>
+                            <th class="text-left">Address</th>
+                            <td class="text-left">{{ profile.address }}</td>
+                        </tr>
+                        <tr>
+                            <th class="text-left">Seher</th>
+                            <td class="text-left">{{ profile.city }}</td>
+                        </tr>
+                        <tr>
+                            <th class="text-left">Olke</th>
+                            <td class="text-left">{{ profile.country }}</td>
+                        </tr>
+
+                </table>
+            </div>
+
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+</div>
+<!-- /section -->
+  
+{% endblock content %}
+
+
+
